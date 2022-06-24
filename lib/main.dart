@@ -1,6 +1,6 @@
-import 'package:expense_app/transaction.dart';
+import 'package:expense_app/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -23,11 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1', title: 'New Shirt', amount: 700.00, date: DateTime.now()),
-    Transaction(id: 't2', title: 'PS5', amount: 800, date: DateTime.now())
-  ];
+  
 
   //late String titleInput;
   //late String amountInput;
@@ -87,41 +83,8 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-                children: transactions.map((tx) {
-              return Card(
-                  child: Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      '\$: ${tx.amount}',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.purple,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 2, color: Colors.purple),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tx.title,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Text(DateFormat.yMMMd().format(tx.date),
-                          style: TextStyle(fontSize: 12, color: Colors.grey))
-                    ],
-                  )
-                ],
-              ));
-            }).toList())
+             TransactionList(),
+            
           ],
         ));
   }
